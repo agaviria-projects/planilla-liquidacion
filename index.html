@@ -12,7 +12,7 @@
       border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .item { font-weight: bold; font-size: 18px; margin-bottom: 3px; color:#222; }
-    .desc { font-size: 14px; margin-bottom: 10px; color:#444; }
+    .desc { font-size: 13px; margin-bottom: 10px; color:#444; }
     .valores {
       font-size: 14px; margin: 4px 0;
       display: flex; justify-content: space-between;
@@ -55,12 +55,63 @@
 
   <script>
     const items = [
-      { codigo:"A02R", desc:"Conexión acometida cobre/aluminio", cliente:108551, cuadrilla:68216 },
-      { codigo:"A02RA", desc:"Conexión acometida cable aluminio", cliente:108551, cuadrilla:68216 },
-      { codigo:"A02U", desc:"Conexión acometida cable cobre", cliente:108551, cuadrilla:68216 },
-      { codigo:"A02UA", desc:"Conexión acometida aérea", cliente:108551, cuadrilla:68216 },
-      { codigo:"A03R", desc:"Instalación acometida caja", cliente:70290, cuadrilla:41356 }
-      // 👉 Aquí van todos los demás ítems del Excel
+      { codigo:"A03U", desc:"Instalación acometida caja multimedidores", cliente:70290, cuadrilla:38046 },
+      { codigo:"A04R", desc:"Colocación acometida aérea Cu neutro conc.", cliente:147240, cuadrilla:91267 },
+      { codigo:"A04U", desc:"Colocación acometida aérea Cu neutro conc.", cliente:147240, cuadrilla:91267 },
+      { codigo:"A05R", desc:"Colocación acometida aérea Al neutro conc.", cliente:157300, cuadrilla:100649 },
+      { codigo:"A05U", desc:"Colocación acometida aérea Al neutro conc.", cliente:157300, cuadrilla:100649 },
+      { codigo:"A06R", desc:"Colocación acometida aérea cobre/aluminio", cliente:80719, cuadrilla:63768 },
+      { codigo:"A06U", desc:"Colocación acometida aérea simple", cliente:80719, cuadrilla:59129 },
+      { codigo:"A07R", desc:"Colocación acometida aérea cable fuerza", cliente:160799, cuadrilla:90729 },
+      { codigo:"A07RA", desc:"Colocación acometida aérea cable fuerza", cliente:160799, cuadrilla:90729 },
+      { codigo:"A07U", desc:"Colocación acometida aérea cable fuerza", cliente:160799, cuadrilla:90729 },
+      { codigo:"A07UA", desc:"Colocación acometida aérea cable fuerza", cliente:160799, cuadrilla:90729 },
+      { codigo:"A08R", desc:"Colocación acometida subterránea", cliente:73678, cuadrilla:49836 },
+      { codigo:"A08U", desc:"Colocación acometida subterránea", cliente:73678, cuadrilla:43045 },
+      { codigo:"A09R", desc:"Suministro tubería PVC canalizada", cliente:57349, cuadrilla:49093 },
+      { codigo:"A09U", desc:"Colocación tubería PVC canalizada", cliente:57349, cuadrilla:49093 },
+      { codigo:"A10R", desc:"Caja hermética fachada/poste", cliente:121630, cuadrilla:71028 },
+      { codigo:"A10U", desc:"Caja hermética fachada/poste", cliente:121630, cuadrilla:66510 },
+      { codigo:"A11R", desc:"Caja multimedidores", cliente:0, cuadrilla:100190 },
+      { codigo:"A11U", desc:"Caja multimedidores", cliente:0, cuadrilla:95150 },
+      { codigo:"A12R", desc:"Medidor energía directa", cliente:101129, cuadrilla:59689 },
+      { codigo:"A12U", desc:"Medidor energía directa", cliente:101129, cuadrilla:53106 },
+      { codigo:"A16R", desc:"Medidor bicuerpo prepago/pospago", cliente:227418, cuadrilla:106126 },
+      { codigo:"A16U", desc:"Medidor bicuerpo prepago/pospago", cliente:227418, cuadrilla:95538 },
+      { codigo:"A18R", desc:"Conductor puesta a tierra N°8", cliente:134740, cuadrilla:73142 },
+      { codigo:"A18U", desc:"Conductor puesta a tierra N°8", cliente:134740, cuadrilla:68612 },
+      { codigo:"A19R", desc:"Instalación varilla puesta a tierra", cliente:62930, cuadrilla:36840 },
+      { codigo:"A19U", desc:"Instalación varilla puesta a tierra", cliente:62930, cuadrilla:33072 },
+      { codigo:"A20R", desc:"Tubería PVC ¾”", cliente:24298, cuadrilla:16012 },
+      { codigo:"A20U", desc:"Tubería PVC ¾”", cliente:24298, cuadrilla:15144 },
+      { codigo:"A21R", desc:"Tubería TMG-IMC ¾”", cliente:49708, cuadrilla:35510 },
+      { codigo:"A21U", desc:"Tubería TMG-IMC ¾”", cliente:49708, cuadrilla:33610 },
+      { codigo:"A22R", desc:"Pase aéreo expuesto cobre/aluminio", cliente:107481, cuadrilla:84077 },
+      { codigo:"A22U", desc:"Pase aéreo expuesto cobre/aluminio", cliente:107481, cuadrilla:80092 },
+      { codigo:"A23R", desc:"Pase cable concéntrico cobre/aluminio", cliente:119418, cuadrilla:70667 },
+      { codigo:"A23U", desc:"Pase cable concéntrico cobre/aluminio", cliente:119418, cuadrilla:68150 },
+      { codigo:"A24R", desc:"Pase cable 4x8 AWG cobre", cliente:86462, cuadrilla:51427 },
+      { codigo:"A24U", desc:"Pase cable 4x8 AWG cobre", cliente:86462, cuadrilla:50380 },
+      { codigo:"A29R", desc:"Retiro acometida cobre/aluminio", cliente:31097, cuadrilla:22152 },
+      { codigo:"A29U", desc:"Retiro acometida cobre/aluminio", cliente:31097, cuadrilla:23815 },
+      { codigo:"A30R", desc:"Retiro tablero distribución", cliente:33537, cuadrilla:25070 },
+      { codigo:"A30U", desc:"Retiro tablero distribución", cliente:33537, cuadrilla:22153 },
+      { codigo:"A31R", desc:"Instalación caja derivación", cliente:0, cuadrilla:100067 },
+      { codigo:"A31U", desc:"Instalación caja derivación", cliente:0, cuadrilla:89171 },
+      { codigo:"A32R", desc:"Percha aislador carrete", cliente:0, cuadrilla:20431 },
+      { codigo:"A32U", desc:"Percha aislador carrete", cliente:0, cuadrilla:18988 },
+      { codigo:"A33R", desc:"Cable mensajero super GX 1/4”", cliente:0, cuadrilla:63654 },
+      { codigo:"A33U", desc:"Cable mensajero super GX 1/4”", cliente:0, cuadrilla:59673 },
+      { codigo:"A34R", desc:"Cruceta metálica en poste", cliente:0, cuadrilla:55930 },
+      { codigo:"A34U", desc:"Cruceta metálica en poste", cliente:0, cuadrilla:52821 },
+      { codigo:"A35R", desc:"Conductor puesta a tierra N°4", cliente:0, cuadrilla:33783 },
+      { codigo:"A35U", desc:"Conductor puesta a tierra N°4", cliente:0, cuadrilla:30952 },
+      { codigo:"CALE1F", desc:"Calibración medidor 1F", cliente:10520, cuadrilla:0 },
+      { codigo:"200092", desc:"Medidor 1F 120V CL1 básico", cliente:63853, cuadrilla:0 },
+      { codigo:"200093", desc:"Medidor 1F-3H 120/240V CL1 básico", cliente:81622, cuadrilla:0 },
+      { codigo:"200098", desc:"Medidor 120V bicuerpo PLC", cliente:214100, cuadrilla:0 },
+      { codigo:"200099", desc:"Medidor 240V bicuerpo PLC", cliente:298171, cuadrilla:0 }
+      // 👉 Aquí puedes seguir agregando más códigos si lo deseas
     ];
 
     const contenedor = document.getElementById("contenedor-items");
@@ -81,7 +132,6 @@
         <div class="totales"><div>Total Cuadrilla:</div><span id="totCuad-${index}">$ 0</span></div>
       `;
       contenedor.appendChild(card);
-
       document.getElementById(`cant-${index}`).addEventListener("input", actualizar);
     });
 
@@ -108,3 +158,4 @@
   </script>
 </body>
 </html>
+
