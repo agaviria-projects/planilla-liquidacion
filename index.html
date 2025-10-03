@@ -112,8 +112,8 @@
     let sumaCantidades = 0;
 
     document.querySelectorAll(".item-card").forEach(card => {
-      const valorCliente = parseFloat(card.querySelector(".cliente").textContent);
-      const valorCuadrilla = parseFloat(card.querySelector(".cuadrilla").textContent);
+      const valorCliente = parseFloat(card.querySelector(".cliente").getAttribute("data-value"));
+      const valorCuadrilla = parseFloat(card.querySelector(".cuadrilla").getAttribute("data-value"));
       const cantidad = parseInt(card.querySelector(".cantidad").value) || 0;
 
       const totalCliente = valorCliente * cantidad;
@@ -131,6 +131,16 @@
     document.getElementById("sumaCuadrilla").textContent = formatoPesos(sumaCuadrilla);
     document.getElementById("sumaCantidades").textContent = sumaCantidades;
   }
+
+  // Al iniciar, aplicar formato pesos en valores fijos
+  document.querySelectorAll(".cliente, .cuadrilla").forEach(el => {
+    const valor = parseFloat(el.textContent);
+    el.setAttribute("data-value", valor); // guardar valor original
+    el.textContent = formatoPesos(valor);
+  });
+
+  // Inicializar cálculo
+  recalcular();
 
   document.querySelectorAll(".cantidad").forEach(input => {
     input.addEventListener("input", recalcular);
