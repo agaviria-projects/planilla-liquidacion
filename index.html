@@ -10,13 +10,17 @@
     table { width: 100%; border-collapse: collapse; margin-top: 15px; background:#fff; }
     th, td { border: 1px solid #ccc; padding: 8px; text-align: center; font-size: 14px; }
     th { background: #4caf50; color: white; }
-    input {
-      width: 50px; 
+    /* Ítem más grande */
+    td.item { font-weight: bold; font-size: 16px; color: #000; }
+    /* Cantidad más amplia */
+    input.cantidad {
+      width: 100px; 
       text-align: center;
-      padding: 4px;
-      font-size: 13px;
+      padding: 6px;
+      font-size: 16px;
     }
-    .totales { font-weight: bold; background: #ffe082; }
+    .totales { font-weight: bold; background: #ffe082; font-size: 16px; }
+    .totales td { padding: 12px; }
     /* Responsive para celulares */
     @media (max-width: 600px) {
       table, thead, tbody, th, td, tr { display: block; }
@@ -24,7 +28,7 @@
       tr { margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; background: #fff; }
       td { border: none; text-align: right; padding: 6px 10px; position: relative; }
       td::before { content: attr(data-label); position: absolute; left: 10px; font-weight: bold; text-align: left; }
-      input { width: 100%; }
+      input.cantidad { width: 100%; }
     }
   </style>
 </head>
@@ -46,7 +50,7 @@
   </thead>
   <tbody>
     <tr>
-      <td data-label="Ítem">A02R</td>
+      <td class="item" data-label="Ítem">A02R</td>
       <td data-label="Descripción">Actividad de acometida</td>
       <td data-label="Valor Cliente" class="cliente">108551</td>
       <td data-label="Valor Cuadrilla" class="cuadrilla">68216</td>
@@ -55,7 +59,7 @@
       <td data-label="Total Cuadrilla" class="totalCuadrilla">$ 0</td>
     </tr>
     <tr>
-      <td data-label="Ítem">A03R</td>
+      <td class="item" data-label="Ítem">A03R</td>
       <td data-label="Descripción">Instalación acometida aérea</td>
       <td data-label="Valor Cliente" class="cliente">70290</td>
       <td data-label="Valor Cuadrilla" class="cuadrilla">41356</td>
@@ -66,9 +70,9 @@
   </tbody>
   <tfoot>
     <tr class="totales">
-      <td colspan="3">Suma Cantidades</td>
+      <td colspan="2">Suma Cantidades</td>
       <td id="sumaCantidades">0</td>
-      <td>VALOR ACTA EPM</td>
+      <td colspan="2">VALOR ACTA EPM</td>
       <td id="sumaCliente">$ 0</td>
       <td id="sumaCuadrilla">$ 0 (VALOR CUADRILLA EPM)</td>
     </tr>
