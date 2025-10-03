@@ -45,7 +45,7 @@
 
   <script>
     const items = [
-      codigo:"A02R", desc:"Conexión acometida cobre/aluminio", cliente:108551, cuadrilla:68216 },
+      { codigo:"A02R", desc:"Conexión acometida cobre/aluminio", cliente:108551, cuadrilla:68216 },
       { codigo:"A02RA", desc:"Conexión acometida cable aluminio", cliente:108551, cuadrilla:68216 },
       { codigo:"A02U", desc:"Conexión acometida cable cobre", cliente:108551, cuadrilla:68216 },
       { codigo:"A02UA", desc:"Conexión acometida aérea", cliente:108551, cuadrilla:68216 },
@@ -68,6 +68,7 @@
       { codigo:"A12R", desc:"Instalación medidor energía directa", cliente:101129, cuadrilla:53608 },
       { codigo:"A12U", desc:"Medidor energía directa", cliente:101129, cuadrilla:53106 }
     ];
+
     const contenedor = document.getElementById("contenedor-items");
 
     items.forEach((it, index) => {
@@ -115,4 +116,5 @@
   </script>
 </body>
 </html>
+
 
