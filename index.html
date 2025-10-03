@@ -10,25 +10,35 @@
     table { width: 100%; border-collapse: collapse; margin-top: 15px; background:#fff; }
     th, td { border: 1px solid #ccc; padding: 8px; text-align: center; font-size: 14px; }
     th { background: #4caf50; color: white; }
-    /* Ítem más grande */
-    td.item { font-weight: bold; font-size: 16px; color: #000; }
-    /* Cantidad más amplia */
+    td.item { font-weight: bold; font-size: 16px; }
     input.cantidad {
       width: 100px; 
       text-align: center;
       padding: 6px;
       font-size: 16px;
     }
-    .totales { font-weight: bold; background: #ffe082; font-size: 16px; }
-    .totales td { padding: 12px; }
-    /* Responsive para celulares */
+    /* Bloque resumen */
+    .resumen {
+      margin-top: 20px;
+      background: #ffe082;
+      padding: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 8px;
+      border: 2px solid #f0c14b;
+    }
+    .resumen div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .resumen span {
+      font-weight: normal;
+    }
+    /* Responsive */
     @media (max-width: 600px) {
-      table, thead, tbody, th, td, tr { display: block; }
-      thead tr { display: none; }
-      tr { margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; background: #fff; }
-      td { border: none; text-align: right; padding: 6px 10px; position: relative; }
-      td::before { content: attr(data-label); position: absolute; left: 10px; font-weight: bold; text-align: left; }
       input.cantidad { width: 100%; }
+      .resumen { font-size: 16px; }
     }
   </style>
 </head>
@@ -68,16 +78,14 @@
       <td data-label="Total Cuadrilla" class="totalCuadrilla">$ 0</td>
     </tr>
   </tbody>
-  <tfoot>
-    <tr class="totales">
-      <td colspan="2">Suma Cantidades</td>
-      <td id="sumaCantidades">0</td>
-      <td colspan="2">VALOR ACTA EPM</td>
-      <td id="sumaCliente">$ 0</td>
-      <td id="sumaCuadrilla">$ 0 (VALOR CUADRILLA EPM)</td>
-    </tr>
-  </tfoot>
 </table>
+
+<!-- Bloque resumen -->
+<div class="resumen">
+  <div>SUMA CANTIDADES: <span id="sumaCantidades">0</span></div>
+  <div>VALOR ACTA EPM: <span id="sumaCliente">$ 0</span></div>
+  <div>VALOR CUADRILLA: <span id="sumaCuadrilla">$ 0</span></div>
+</div>
 
 <script>
   function formatoPesos(valor){
