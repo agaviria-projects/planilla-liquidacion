@@ -11,25 +11,35 @@
       background: white; padding: 12px; margin-bottom: 15px;
       border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .item { font-weight: bold; font-size: 18px; margin-bottom: 3px; }
-    .desc { font-size: 14px; margin-bottom: 8px; color:#444; }
+    .item { font-weight: bold; font-size: 18px; margin-bottom: 3px; color:#222; }
+    .desc { font-size: 14px; margin-bottom: 10px; color:#444; }
     .valores {
+      font-size: 14px; margin: 4px 0;
       display: flex; justify-content: space-between;
-      font-size: 14px; margin-bottom: 6px;
     }
     .valores span { font-weight: bold; }
-    label { font-size: 14px; margin-right: 5px; }
-    input[type="number"] {
-      width: 80px; padding: 5px; margin-top: 5px;
-      border: 1px solid #ccc; border-radius: 4px;
-      font-size: 16px; text-align: center;
+    .cantidad-box {
+      margin: 8px 0; display: flex; align-items: center;
     }
-    .totales { margin-top: 5px; font-size: 14px; }
+    .cantidad-box label { margin-right: 10px; font-size: 14px; }
+    input[type="number"] {
+      width: 90px; padding: 6px;
+      border: 1px solid #ccc; border-radius: 5px;
+      font-size: 15px; text-align: center;
+    }
+    .totales {
+      display: flex; justify-content: space-between;
+      font-size: 14px; margin-top: 6px;
+    }
+    .totales span { font-weight: bold; }
     .resumen {
-      background: #ffe082; padding: 15px; border-radius: 8px;
+      background: #ffe082; padding: 18px; border-radius: 8px;
       margin-top: 20px; font-size: 18px; font-weight: bold;
     }
-    .resumen div { margin: 8px 0; }
+    .resumen div {
+      display: flex; justify-content: space-between;
+      margin: 10px 0;
+    }
   </style>
 </head>
 <body>
@@ -38,9 +48,9 @@
   <div id="contenedor-items"></div>
 
   <div class="resumen">
-    <div id="sumaCantidades">SUMA CANTIDADES: 0</div>
-    <div id="totalCliente">VALOR ACTA EPM: $ 0</div>
-    <div id="totalCuadrilla">VALOR CUADRILLA: $ 0</div>
+    <div><span>SUMA CANTIDADES:</span> <span id="sumaCantidades">0</span></div>
+    <div><span>VALOR ACTA EPM:</span> <span id="totalCliente">$ 0</span></div>
+    <div><span>VALOR CUADRILLA:</span> <span id="totalCuadrilla">$ 0</span></div>
   </div>
 
   <script>
@@ -49,7 +59,7 @@
       { codigo:"A02RA", desc:"Conexión acometida cable aluminio", cliente:108551, cuadrilla:68216 },
       { codigo:"A02U", desc:"Conexión acometida cable cobre", cliente:108551, cuadrilla:68216 },
       { codigo:"A02UA", desc:"Conexión acometida aérea", cliente:108551, cuadrilla:68216 },
-      { codigo:"A03R", desc:"Instalación acometida caja", cliente:70290, cuadrilla:41356 },
+      { codigo:"A03R", desc:"Instalación acometida caja", cliente:70290, cuadrilla:41356 }
       { codigo:"A04R", desc:"Colocación acometida aérea cobre neutro", cliente:147240, cuadrilla:91267 },
       { codigo:"A04U", desc:"Colocación acometida aérea neutro", cliente:147240, cuadrilla:91267 },
       { codigo:"A05R", desc:"Colocación acometida aluminio neutro", cliente:157300, cuadrilla:100648 },
@@ -77,16 +87,14 @@
       card.innerHTML = `
         <div class="item">${it.codigo}</div>
         <div class="desc">${it.desc}</div>
-        <div class="valores">
-          <div>Valor Cliente: <span>${formato(it.cliente)}</span></div>
-          <div>Valor Cuadrilla: <span>${formato(it.cuadrilla)}</span></div>
-        </div>
-        <div>
+        <div class="valores"><div>Valor Cliente:</div><span>${formato(it.cliente)}</span></div>
+        <div class="valores"><div>Valor Cuadrilla:</div><span>${formato(it.cuadrilla)}</span></div>
+        <div class="cantidad-box">
           <label>Cantidad:</label>
           <input type="number" min="0" value="0" id="cant-${index}" />
         </div>
-        <div class="totales">Total Cliente: <span id="totCliente-${index}">$ 0</span></div>
-        <div class="totales">Total Cuadrilla: <span id="totCuad-${index}">$ 0</span></div>
+        <div class="totales"><div>Total Cliente:</div><span id="totCliente-${index}">$ 0</span></div>
+        <div class="totales"><div>Total Cuadrilla:</div><span id="totCuad-${index}">$ 0</span></div>
       `;
       contenedor.appendChild(card);
 
@@ -109,9 +117,9 @@
         document.getElementById(`totCliente-${index}`).innerText = formato(tCli);
         document.getElementById(`totCuad-${index}`).innerText = formato(tCua);
       });
-      document.getElementById("sumaCantidades").innerText = "SUMA CANTIDADES: " + sumaCant;
-      document.getElementById("totalCliente").innerText = "VALOR ACTA EPM: " + formato(totalCli);
-      document.getElementById("totalCuadrilla").innerText = "VALOR CUADRILLA: " + formato(totalCua);
+      document.getElementById("sumaCantidades").innerText = sumaCant;
+      document.getElementById("totalCliente").innerText = formato(totalCli);
+      document.getElementById("totalCuadrilla").innerText = formato(totalCua);
     }
   </script>
 </body>
