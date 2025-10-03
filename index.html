@@ -26,19 +26,20 @@
       font-weight: bold;
       border-radius: 8px;
       border: 2px solid #f0c14b;
+      width: 100%;          /* ocupa todo el ancho */
+      box-sizing: border-box;
     }
     .resumen div {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
-    .resumen span {
-      font-weight: normal;
-    }
+    .resumen div:last-child { margin-bottom: 0; }
+    .resumen span { font-weight: normal; }
     /* Responsive */
     @media (max-width: 600px) {
       input.cantidad { width: 100%; }
-      .resumen { font-size: 16px; }
+      .resumen { font-size: 17px; }
     }
   </style>
 </head>
@@ -80,7 +81,7 @@
   </tbody>
 </table>
 
-<!-- Bloque resumen -->
+<!-- Bloque resumen al final -->
 <div class="resumen">
   <div>SUMA CANTIDADES: <span id="sumaCantidades">0</span></div>
   <div>VALOR ACTA EPM: <span id="sumaCliente">$ 0</span></div>
@@ -125,3 +126,4 @@
 
 </body>
 </html>
+
