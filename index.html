@@ -8,12 +8,17 @@
     body { font-family: Arial, sans-serif; margin: 10px; background: #f7f7f7; }
     h2 { text-align: center; margin-bottom: 15px; }
     .card {
-      background: white; padding: 10px; margin-bottom: 12px;
+      background: white; padding: 12px; margin-bottom: 15px;
       border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .item { font-weight: bold; margin-bottom: 5px; color:#333; }
-    .desc { font-size: 14px; margin-bottom: 8px; color:#555; }
-    label { font-size: 14px; display: block; margin-top: 5px; }
+    .item { font-weight: bold; font-size: 18px; margin-bottom: 3px; }
+    .desc { font-size: 14px; margin-bottom: 8px; color:#444; }
+    .valores {
+      display: flex; justify-content: space-between;
+      font-size: 14px; margin-bottom: 6px;
+    }
+    .valores span { font-weight: bold; }
+    label { font-size: 14px; margin-right: 5px; }
     input[type="number"] {
       width: 80px; padding: 5px; margin-top: 5px;
       border: 1px solid #ccc; border-radius: 4px;
@@ -40,7 +45,7 @@
 
   <script>
     const items = [
-      { codigo:"A02R", desc:"Conexión acometida cobre/aluminio", cliente:108551, cuadrilla:68216 },
+      codigo:"A02R", desc:"Conexión acometida cobre/aluminio", cliente:108551, cuadrilla:68216 },
       { codigo:"A02RA", desc:"Conexión acometida cable aluminio", cliente:108551, cuadrilla:68216 },
       { codigo:"A02U", desc:"Conexión acometida cable cobre", cliente:108551, cuadrilla:68216 },
       { codigo:"A02UA", desc:"Conexión acometida aérea", cliente:108551, cuadrilla:68216 },
@@ -63,7 +68,6 @@
       { codigo:"A12R", desc:"Instalación medidor energía directa", cliente:101129, cuadrilla:53608 },
       { codigo:"A12U", desc:"Medidor energía directa", cliente:101129, cuadrilla:53106 }
     ];
-
     const contenedor = document.getElementById("contenedor-items");
 
     items.forEach((it, index) => {
@@ -72,11 +76,14 @@
       card.innerHTML = `
         <div class="item">${it.codigo}</div>
         <div class="desc">${it.desc}</div>
-        <div>Valor Cliente: ${formato(it.cliente)}</div>
-        <div>Valor Cuadrilla: ${formato(it.cuadrilla)}</div>
-        <label>Cantidad:
+        <div class="valores">
+          <div>Valor Cliente: <span>${formato(it.cliente)}</span></div>
+          <div>Valor Cuadrilla: <span>${formato(it.cuadrilla)}</span></div>
+        </div>
+        <div>
+          <label>Cantidad:</label>
           <input type="number" min="0" value="0" id="cant-${index}" />
-        </label>
+        </div>
         <div class="totales">Total Cliente: <span id="totCliente-${index}">$ 0</span></div>
         <div class="totales">Total Cuadrilla: <span id="totCuad-${index}">$ 0</span></div>
       `;
@@ -108,3 +115,4 @@
   </script>
 </body>
 </html>
+
