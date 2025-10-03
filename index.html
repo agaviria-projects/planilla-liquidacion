@@ -10,7 +10,12 @@
     table { width: 100%; border-collapse: collapse; margin-top: 15px; background:#fff; }
     th, td { border: 1px solid #ccc; padding: 8px; text-align: center; font-size: 14px; }
     th { background: #4caf50; color: white; }
-    input { width: 60px; text-align: center; padding: 4px; }
+    input {
+      width: 50px; 
+      text-align: center;
+      padding: 4px;
+      font-size: 13px;
+    }
     .totales { font-weight: bold; background: #ffe082; }
     /* Responsive para celulares */
     @media (max-width: 600px) {
@@ -46,8 +51,8 @@
       <td data-label="Valor Cliente" class="cliente">108551</td>
       <td data-label="Valor Cuadrilla" class="cuadrilla">68216</td>
       <td data-label="Cantidad"><input type="number" value="0" min="0" class="cantidad"></td>
-      <td data-label="Total Cliente" class="totalCliente">0</td>
-      <td data-label="Total Cuadrilla" class="totalCuadrilla">0</td>
+      <td data-label="Total Cliente" class="totalCliente">$ 0</td>
+      <td data-label="Total Cuadrilla" class="totalCuadrilla">$ 0</td>
     </tr>
     <tr>
       <td data-label="Ítem">A03R</td>
@@ -55,23 +60,29 @@
       <td data-label="Valor Cliente" class="cliente">70290</td>
       <td data-label="Valor Cuadrilla" class="cuadrilla">41356</td>
       <td data-label="Cantidad"><input type="number" value="0" min="0" class="cantidad"></td>
-      <td data-label="Total Cliente" class="totalCliente">0</td>
-      <td data-label="Total Cuadrilla" class="totalCuadrilla">0</td>
+      <td data-label="Total Cliente" class="totalCliente">$ 0</td>
+      <td data-label="Total Cuadrilla" class="totalCuadrilla">$ 0</td>
     </tr>
   </tbody>
   <tfoot>
     <tr class="totales">
-      <td colspan="5">Totales Generales</td>
-      <td id="sumaCliente">0</td>
-      <td id="sumaCuadrilla">0</td>
+      <td colspan="4">Totales Generales</td>
+      <td id="sumaCantidades">0</td>
+      <td id="sumaCliente">$ 0</td>
+      <td id="sumaCuadrilla">$ 0</td>
     </tr>
   </tfoot>
 </table>
 
 <script>
+  function formatoPesos(valor){
+    return valor.toLocaleString("es-CO", {style:"currency", currency:"COP"});
+  }
+
   function recalcular() {
     let sumaCliente = 0;
     let sumaCuadrilla = 0;
+    let sumaCantidades = 0;
 
     document.querySelectorAll("tbody tr").forEach(row => {
       const valorCliente = parseFloat(row.querySelector(".cliente").textContent);
@@ -81,15 +92,17 @@
       const totalCliente = valorCliente * cantidad;
       const totalCuadrilla = valorCuadrilla * cantidad;
 
-      row.querySelector(".totalCliente").textContent = totalCliente.toLocaleString();
-      row.querySelector(".totalCuadrilla").textContent = totalCuadrilla.toLocaleString();
+      row.querySelector(".totalCliente").textContent = formatoPesos(totalCliente);
+      row.querySelector(".totalCuadrilla").textContent = formatoPesos(totalCuadrilla);
 
       sumaCliente += totalCliente;
       sumaCuadrilla += totalCuadrilla;
+      sumaCantidades += cantidad;
     });
 
-    document.getElementById("sumaCliente").textContent = sumaCliente.toLocaleString();
-    document.getElementById("sumaCuadrilla").textContent = sumaCuadrilla.toLocaleString();
+    document.getElementById("sumaCliente").textContent = formatoPesos(sumaCliente);
+    document.getElementById("sumaCuadrilla").textContent = formatoPesos(sumaCuadrilla);
+    document.getElementById("sumaCantidades").textContent = sumaCantidades;
   }
 
   document.querySelectorAll(".cantidad").forEach(input => {
